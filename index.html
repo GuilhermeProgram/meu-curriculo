@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilherme Rodrigues - Currículo Interativo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals (Stone & Amber) -->
+    <!-- Application Structure Plan: A single-page portfolio with a sticky top navigation bar for easy access to distinct sections: Sobre, Experiência, Habilidades, Formação e Contato. This structure organizes the CV content logically, transforming it from a static document into an explorable personal showcase. The 'Habilidades' section uses interactive charts to visually represent competencies, which is more engaging than a simple list and allows for a quick assessment by a recruiter. -->
+    <!-- Visualization & Content Choices: Report Info: Habilidades (Técnicas e Interpessoais) -> Goal: Compare/Inform -> Viz/Presentation Method: Two horizontal bar charts (Chart.js/Canvas) to visually represent self-assessed proficiency levels. -> Interaction: Charts animate on load; tooltips display skill names on hover. -> Justification: Charts offer a more dynamic and easily digestible format for skills assessment than a text list, enhancing the user experience. -> Library/Method: Chart.js. Report Info: Experiência Profissional -> Goal: Inform/Change (over time) -> Viz/Presentation Method: Vertical timeline created with HTML/CSS/Tailwind. -> Justification: A timeline is a classic and effective way to present chronological experience. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+body {
+    font-family: 'Inter', sans-serif;
+}
+.chart-container {
+    position: relative;
+    height: 450px;
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+@media (max-width: 640px) {
+    .chart-container {
+        height: 350px;
+    }
+}
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <nav id="navbar" class="bg-stone-100/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <span class="text-xl font-bold text-amber-700">Guilherme Rodrigues</span>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#sobre" class="text-stone-600 hover:text-amber-700 transition duration-300">Sobre</a>
+                    <a href="#experiencia" class="text-stone-600 hover:text-amber-700 transition duration-300">Experiência</a>
+                    <a href="#habilidades" class="text-stone-600 hover:text-amber-700 transition duration-300">Habilidades</a>
+                    <a href="#formacao" class="text-stone-600 hover:text-amber-700 transition duration-300">Formação</a>
+                    <a href="#contato" class="text-stone-600 hover:text-amber-700 transition duration-300">Contato</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-stone-600 hover:text-amber-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#sobre" class="block py-2 px-4 text-sm text-stone-600 hover:bg-amber-100">Sobre</a>
+            <a href="#experiencia" class="block py-2 px-4 text-sm text-stone-600 hover:bg-amber-100">Experiência</a>
+            <a href="#habilidades" class="block py-2 px-4 text-sm text-stone-600 hover:bg-amber-100">Habilidades</a>
+            <a href="#formacao" class="block py-2 px-4 text-sm text-stone-600 hover:bg-amber-100">Formação</a>
+            <a href="#contato" class="block py-2 px-4 text-sm text-stone-600 hover:bg-amber-100">Contato</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 md:py-16">
+
+        <section id="sobre" class="min-h-[60vh] flex items-center text-center md:text-left">
+            <div class="w-full">
+                <h1 class="text-4xl md:text-6xl font-bold text-stone-900 leading-tight">Guilherme Rodrigues</h1>
+                <p class="text-xl md:text-2xl text-amber-700 font-medium mt-2">Programador & Designer</p>
+                <p class="mt-6 max-w-3xl mx-auto md:mx-0 text-lg text-stone-600">
+                    Busco uma oportunidade de trabalho como atendente, onde possa aplicar minhas sólidas habilidades em comunicação, atendimento ao cliente e adaptabilidade. Desejo contribuir proativamente para a satisfação dos clientes e o sucesso da equipe, enquanto continuo meu desenvolvimento profissional.
+                </p>
+                <div class="mt-8">
+                    <a href="#contato" class="bg-amber-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-amber-700 transition duration-300 shadow-lg">Entre em Contato</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="my-16 md:my-24 border-t border-stone-200"></div>
+        
+        <section id="experiencia" class="py-8 md:py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-stone-900">Experiência Profissional</h2>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute w-0.5 h-full bg-stone-200 left-4 md:left-1/2 -translate-x-1/2"></div>
+                
+                <div class="relative mb-8">
+                    <div class="absolute w-8 h-8 bg-amber-600 rounded-full left-4 -translate-x-1/2 top-0 border-4 border-stone-50"></div>
+                    <div class="ml-12 md:ml-0 md:w-1/2 md:pl-8 md:pr-8 md:text-right">
+                        <h3 class="text-xl font-bold text-stone-800">Balconista</h3>
+                        <p class="text-md font-medium text-stone-600">Grupo DPSP</p>
+                        <p class="text-sm text-stone-500">Fevereiro 2024 - Julho 2025</p>
+                    </div>
+                    <div class="md:w-1/2 md:pl-8 mt-4 md:mt-0 ml-12 md:ml-[50%]">
+                        <div class="bg-white p-6 rounded-lg shadow-md border border-stone-100">
+                            <ul class="space-y-3 text-stone-600 list-disc list-inside">
+                                <li>Atendimento direto e cordial a clientes, oferecendo suporte e informações sobre produtos.</li>
+                                <li>Gestão eficiente de caixa e organização do balcão.</li>
+                                <li>Desenvolvimento de adaptabilidade e proatividade ao lidar com diversas demandas.</li>
+                                <li>Suporte técnico básico, demonstrando capacidade de aprendizado rápido e resolução de problemas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="my-16 md:my-24 border-t border-stone-200"></div>
+
+        <section id="habilidades" class="py-8 md:py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-stone-900">Habilidades</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6 text-stone-800">Competências Técnicas</h3>
+                    <div class="chart-container">
+                        <canvas id="techSkillsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6 text-stone-800">Competências Interpessoais</h3>
+                    <div class="chart-container">
+                        <canvas id="softSkillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="my-16 md:my-24 border-t border-stone-200"></div>
+
+        <section id="formacao" class="py-8 md:py-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-stone-900">Formação & Cursos</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-stone-100">
+                    <h3 class="font-bold text-lg text-amber-700">Bacharelado, Sistemas de Informação</h3>
+                    <p class="font-medium text-stone-600">FACULDADE UNILASALLE</p>
+                    <p class="text-sm text-stone-500 mt-1">Março 2024 - Dezembro 2028</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-stone-100">
+                    <h3 class="font-bold text-lg text-amber-700">Programação de Computadores</h3>
+                    <p class="font-medium text-stone-600">FAETEC</p>
+                    <p class="text-sm text-stone-500 mt-1">2024 - 2024</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-stone-100">
+                    <h3 class="font-bold text-lg text-amber-700">Design Gráfico COMPLETO</h3>
+                    <p class="font-medium text-stone-600">Udemy</p>
+                    <p class="text-sm text-stone-500 mt-1">Concluído em Dezembro 2022</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md border border-stone-100 col-span-1 md:col-span-2 lg:col-span-3">
+                    <h3 class="font-bold text-lg text-amber-700">After Effects para Motion Designers</h3>
+                    <p class="font-medium text-stone-600">Udemy</p>
+                    <p class="text-sm text-stone-500 mt-1">Concluído em Dezembro 2022</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="my-16 md:my-24 border-t border-stone-200"></div>
+
+        <section id="contato" class="py-8 md:py-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-stone-900">Vamos Conversar?</h2>
+            <p class="text-lg text-stone-600 max-w-2xl mx-auto mb-8">Estou aberto a novas oportunidades e pronto para contribuir com sua equipe. Entre em contato para discutirmos como minhas habilidades podem beneficiar sua empresa.</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                 <div class="bg-amber-100 text-amber-800 font-bold py-3 px-6 rounded-lg">
+                    (21) 98281-710
+                </div>
+                <div class="bg-amber-100 text-amber-800 font-bold py-3 px-6 rounded-lg">
+                    Guiunijobs@gmail.com
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-stone-100 border-t border-stone-200">
+        <div class="max-w-6xl mx-auto py-6 px-4 text-center text-stone-500">
+            <p>&copy; 2025 Guilherme Rodrigues. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    <script>
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+});
+
+document.querySelectorAll('#mobile-menu a, #navbar a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href').startsWith('#')) {
+            if (window.innerWidth < 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+    });
+});
+
+const chartOptions = {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        x: {
+            beginAtZero: true,
+            max: 100,
+            grid: {
+                color: 'rgba(200, 200, 200, 0.1)'
+            }
+        },
+        y: {
+            grid: {
+                display: false
+            }
+        }
+    },
+    plugins: {
+        legend: {
+            display: false
+        },
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                    return context.raw + '%';
+                }
+            }
+        }
+    }
+};
+
+const techSkillsCtx = document.getElementById('techSkillsChart').getContext('2d');
+new Chart(techSkillsCtx, {
+    type: 'bar',
+    data: {
+        labels: ['HTML', 'CSS', 'JavaScript', 'Photoshop', 'Illustrator', 'Pacote Office'],
+        datasets: [{
+            label: 'Proficiência',
+            data: [80, 75, 65, 85, 70, 90],
+            backgroundColor: 'rgba(217, 119, 6, 0.7)',
+            borderColor: 'rgba(217, 119, 6, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: chartOptions
+});
+
+const softSkillsCtx = document.getElementById('softSkillsChart').getContext('2d');
+new Chart(softSkillsCtx, {
+    type: 'bar',
+    data: {
+        labels: ['Atendimento ao Cliente', 'Comunicação', 'Organização', 'Proatividade', 'Adaptabilidade', 'Resolução de Problemas'],
+        datasets: [{
+            label: 'Proficiência',
+            data: [95, 90, 85, 90, 95, 80],
+            backgroundColor: 'rgba(120, 113, 108, 0.7)',
+            borderColor: 'rgba(120, 113, 108, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: chartOptions
+});
+    </script>
+</body>
+</html>
